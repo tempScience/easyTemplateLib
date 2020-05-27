@@ -1,0 +1,100 @@
+language: python
+
+env:
+  global:
+    # terminal width
+    - COLUMNS=100
+    - VENV_DIR=$TRAVIS_BUILD_DIR/.venv
+
+matrix:
+  include:
+    # Linux - Ubuntu 16.04
+    - name: "Python 3.6 on Linux Ubuntu 16.04 (Xenial)"
+      dist: xenial
+      python: 3.6
+      env: BADGE=linux
+    - name: "Python 3.7 on Linux Ubuntu 16.04 (Xenial)"
+      dist: xenial
+      python: 3.7
+      env: BADGE=linux
+    - name: "Python 3.8 on Linux Ubuntu 16.04 (Xenial)"
+      dist: xenial
+      python: 3.8
+      env: BADGE=linux
+    # macOS 10.14.4
+    - name: "Python 3.6.10 on macOS 10.14 (Mojave)"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+      install:
+        - brew install sashkab/python/python@3.6
+        - /usr/local/opt/python@3.6/bin/python3.6 -m venv $VENV_DIR
+        - source $VENV_DIR/bin/activate
+      env: BADGE=osx
+    - name: "Python 3.7.6 on macOS 10.14 (Mojave)"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+      install:
+        - brew install sashkab/python/python@3.7
+        - /usr/local/opt/python@3.7/bin/python3.7 -m venv $VENV_DIR
+        - source $VENV_DIR/bin/activate
+      env: BADGE=osx
+    - name: "Python 3.8.1 on macOS 10.14 (Mojave)"
+      os: osx
+      osx_image: xcode11.2
+      language: shell
+      install:
+        - brew install sashkab/python/python@3.8
+        - /usr/local/opt/python@3.8/bin/python3.8 -m venv $VENV_DIR
+        - source $VENV_DIR/bin/activate
+      env: BADGE=osx
+    # Windows 10.0.17134 N/A Build 17134
+    - name: "Python 3.6.5 on Windows 10.0"
+      os: windows
+      language: shell
+      install:
+        - choco install python --version=3.6.5
+        - python -m pip install --upgrade pip
+      env:
+        - BADGE=win
+        - PATH=/c/Python36:/c/Python36/Scripts:$PATH
+    - name: "Python 3.7.5 on Windows 10.0"
+      os: windows
+      language: shell
+      install:
+        - choco install python --version=3.7.5
+        - python -m pip install --upgrade pip
+      env:
+        - BADGE=win
+        - PATH=/c/Python37:/c/Python37/Scripts:$PATH
+    - name: "Python 3.8.0 on Windows 10.0"
+      os: windows
+      language: shell
+      install:
+        - choco install python --version=3.8.0
+        - python -m pip install --upgrade pip
+      env:
+        - BADGE=win
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+
+install:
+  - pip install --upgrade pip
+  - which python
+  - which pip
+
+before_script:
+  - python --version
+  - pip --version
+  - echo $TRAVIS_OS_NAME
+  - echo $TRAVIS_BRANCH
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_TAG
+  - echo $HOME
+
+script:
+  - python Scripts/InstallPyPackages.py
+  - python Scripts/RunTests.py
+
+after_success:
+  - codecov
