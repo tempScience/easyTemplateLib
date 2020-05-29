@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import json
 
 try:
-    with open(os.path.join('easyInterface', 'Release.json')) as json_file:
+    with open(os.path.join('easyTemplate', 'Release.json')) as json_file:
         project_info = json.load(json_file)
 except FileNotFoundError:
     project_info = dict()
@@ -13,27 +13,27 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-long_description += '\n\n## Changelog -v{}\n'.format(project_info['version'])
-long_description += '\n{}'.format(project_info['comments'])
-for comment in project_info['changes']:
+long_description += '\n\n## Changelog -v{}\n'.format(project_info.get('version', '0.0.0'))
+long_description += '\n{}'.format(project_info.get('comments', '-'))
+for comment in project_info.get('changes', []):
     long_description += '\n* {}'.format(comment)
 
 setup(
-    name=project_info.get('name', 'easyInterface'),
+    name=project_info.get('name', 'easyTemplate'),
     version=project_info.get('version', '0.0.0'),
     packages=find_packages(),
     include_package_data=True,
-    url=project_info.get('url', 'https://github.com/easyDiffraction/easyInterface'),
+    url=project_info.get('url', 'https://github.com/tempScience/easyTemplateLib'),
     license='GPL3',
     author=project_info.get('author', 'Simon Ward'),
     author_email='',
-    description='easyInterface - The easy way to interface with crystallographic calculators ',
+    description='easyTemplate - The easy way to interface with things',
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=[
-        'cryspy>=0.2.0',
-        'dictdiffer',
-        'asteval'
+        'numpy',
+        'scipy',
+        'matplotlib'
     ],
     platforms=['any'],
     tests_require=['pytest',
