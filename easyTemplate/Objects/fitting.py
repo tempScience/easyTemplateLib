@@ -74,6 +74,11 @@ class Model:
         for enum, value in enumerate(args):
             items[enum].value = value
 
+    def set_parameter(self, param, value):
+        item = self._parameters.get(param, None)
+        if item:
+            item.value = value
+
     # def __apply_constraints(self, parameter):
     #     if self._constraints is not None:
     #         for constraint in self._constraints:

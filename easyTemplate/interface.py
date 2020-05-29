@@ -25,6 +25,9 @@ class Interface:
     def clear_calc(self):
         self._calculator = None
 
+    def set_parameter(self, parm, value):
+        self.model.set_parameter(parm, value)
+
     def fit(self):
         self._calculator.ftol = self.ftol
         self._prev = self.model.x0
