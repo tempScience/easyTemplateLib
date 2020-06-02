@@ -1,5 +1,5 @@
-__author__ = 'github.com/wardsimon'
-__version__ = '0.0.1'
+__author__ = "github.com/wardsimon"
+__version__ = "0.0.1"
 
 
 from easyTemplate.Engines import calculators as calculators_list
@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 
 class Interface:
-
     def __init__(self, model):
         self._calculator = None
         self.model = model
@@ -20,7 +19,9 @@ class Interface:
     def set_calculator(self, calc):
         calc_avail = [c.name for c in calculators_list]
         if calc in calc_avail:
-            self._calculator = calculators_list[calc_avail.index(calc)](self._for_calc())
+            self._calculator = calculators_list[calc_avail.index(calc)](
+                self._for_calc()
+            )
 
     def clear_calc(self):
         self._calculator = None
@@ -29,6 +30,8 @@ class Interface:
         self.model.set_parameter(parm, value)
 
     def fit(self):
+        if self._calculator is None or self.model is None:
+            raise ValueError
         self._calculator.ftol = self.ftol
         self._prev = self.model.x0
         n_new = self._calculator.calculate()
@@ -36,13 +39,17 @@ class Interface:
         self.y_opt = self.model.func(self.x)
 
     def _for_calc(self):
-        out = {
-            'x': self.x,
-            'y': self.y,
-            'ftol': self.ftol,
-            'model': self.model
-        }
+        out = {"x": self.x, "y": self.y, "ftol": self.ftol, "model": self.model}
         return out
+
+    @property
+    def calculator(self):
+        return self.calculator.name
+
+    @calculator.setter
+    def calculator(self, value):
+        if value in [c.name for c in calculators_list]:
+            self.set_calculator(value)
 
     @property
     def x(self):
