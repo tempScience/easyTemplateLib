@@ -27,5 +27,5 @@ jobs:
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
-        git commit -Am "Automated Repo Maker"
+        git commit -am "Automated Repo Maker"
         git push
