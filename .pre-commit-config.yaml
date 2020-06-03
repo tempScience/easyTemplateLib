@@ -25,7 +25,7 @@ repos:
     hooks:
     - id: flake8
       exclude: ^(Tests|Examples|Docs)/
-      args: ['--ignore=E501']
+      args: ['--max-line-length=120']
 
   -   repo: https://github.com/awebdeveloper/pre-commit-prettier
       rev: master
