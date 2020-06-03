@@ -23,7 +23,7 @@ jobs:
     - name: Replace Names
       shell: bash
       run: |
-        find . -type f -exec sed -i 's/easyTemplateLib/$REPOSITORY_NAME/g' {} +
+        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/$REPOSITORY_NAME/g' {} +
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
