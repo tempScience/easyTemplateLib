@@ -21,12 +21,10 @@ jobs:
     - name: Replace Names
       shell: bash
       run: |
-        echo ${{ env.REPOSITORY_NAME }}
-        mv easyTemplate ${{ env.REPOSITORY_NAME }}
-        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplate/"${{ env.REPOSITORY_NAME }}"/g' {} +
-        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/"${{ env.REPOSITORY_NAME }}"/g' {} +
-      env:
-        REPOSITORY_NAME: $( echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' )
+        export REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+        mv easyTemplate $REPOSITORY_NAME
+        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplate/"$REPOSITORY_NAME"/g' {} +
+        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/"$REPOSITORY_NAME"/g' {} +
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
