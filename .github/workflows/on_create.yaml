@@ -24,9 +24,8 @@ jobs:
       shell: bash
       run: |
         find . -type f -exec sed -i 's/easyTemplateLib/$REPOSITORY_NAME/g' {} +
-    - name: push
-      uses: github-actions-x/commit@v2.6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: master
-        commit-message: '${{ matrix.node-version }} add submodules'
+    - name: Commit Changes
+      run: |
+        git config --global user.name 'On Create Bot'
+        git commit -Am "Automated Repo Maker"
+        git push
