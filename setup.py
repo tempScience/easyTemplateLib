@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import json
 
 try:
-    with open(os.path.join('easyTemplate', 'Release.json')) as json_file:
+    with open(os.path.join('easyTemplateLib', 'Release.json')) as json_file:
         project_info = json.load(json_file)
 except FileNotFoundError:
     project_info = dict()
@@ -19,7 +19,7 @@ for comment in project_info.get('changes', []):
     long_description += '\n* {}'.format(comment)
 
 setup(
-    name=project_info.get('name', 'easyTemplate'),
+    name=project_info.get('name', 'easyTemplateLib'),
     version=project_info.get('version', '0.0.0'),
     packages=find_packages(),
     include_package_data=True,
