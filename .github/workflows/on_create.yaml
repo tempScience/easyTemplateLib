@@ -21,8 +21,10 @@ jobs:
     - name: Replace Names
       shell: bash
       run: |
-        echo $REPOSITORY_NAME
-        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/"$REPOSITORY_NAME"/g' {} +
+        echo ${{ REPOSITORY_NAME }}
+        mv easyTemplate ${{ REPOSITORY_NAME }}
+        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplate/"${{ REPOSITORY_NAME }}"/g' {} +
+        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/"${{ REPOSITORY_NAME }}"/g' {} +
       env:
         REPOSITORY_NAME: $( echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//" )
     - name: Commit Changes
