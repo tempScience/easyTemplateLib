@@ -1,2 +1,2 @@
-# easyTemplateApp
-Template for easyScience applications
+# easyTemplateLib
+Template for easyScience libraries
