@@ -22,11 +22,11 @@ jobs:
       shell: bash
       run: |
         export REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
-        mv easyTemplate $REPOSITORY_NAME
-        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplate/"$REPOSITORY_NAME"/g' {} +
-        find . -path ./.github -prune -o -type f -exec sed -i 's/easyTemplateLib/"$REPOSITORY_NAME"/g' {} +
+        git mv easyTemplate $REPOSITORY_NAME
+        find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate/"$REPOSITORY_NAME"/g' {} +
+        find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib/"$REPOSITORY_NAME"/g' {} +
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
-        git push
+        git push --force
