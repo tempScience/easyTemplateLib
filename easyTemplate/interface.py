@@ -2,8 +2,9 @@ __author__ = "github.com/wardsimon"
 __version__ = "0.0.1"
 
 
-from easyTemplate.Engines import calculators as calculators_list
 import matplotlib.pyplot as plt
+
+from easyTemplate.Engines import calculators as calculators_list
 
 
 class Interface:

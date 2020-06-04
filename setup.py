@@ -1,6 +1,8 @@
-import os
-from setuptools import setup, find_packages
 import json
+import os
+from os import path
+
+from setuptools import find_packages, setup
 
 try:
     with open(os.path.join("easyTemplateLib", "Release.json")) as json_file:
@@ -8,7 +10,6 @@ try:
 except FileNotFoundError:
     project_info = dict()
 
-from os import path
 
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:

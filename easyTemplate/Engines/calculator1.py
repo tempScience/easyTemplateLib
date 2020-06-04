@@ -1,8 +1,9 @@
 __author__ = "github.com/wardsimon"
 __version__ = "0.0.1"
 
-import scipy.optimize as sio
 import numpy as np
+import scipy.optimize as sio
+
 from easyTemplate.Engines.calculatorTemplate import CalculatorTemplate
 
 

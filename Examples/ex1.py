@@ -1,9 +1,10 @@
 __author__ = "github.com/wardsimon"
 __version__ = "0.0.1"
 
-from easyTemplate.Objects.fitting import Parameter, Model
-from easyTemplate.interface import Interface, calculators_list
 import numpy as np
+
+from easyTemplate.interface import Interface, calculators_list
+from easyTemplate.Objects.fitting import Model, Parameter
 
 x = np.linspace(0, 10, 100)
 y = 3.0 * x + 2.0 + np.random.normal(-1.0, 1.0, len(x))
