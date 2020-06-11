@@ -34,7 +34,7 @@ jobs:
         poetry build
         poetry run tox
       env:
-        - COVERAGE_FILE=$GITHUB_WORKSPACE/.coverage
+        COVERAGE_FILE: $GITHUB_WORKSPACE/.coverage
     - name: Upload coverage
       uses: codecov/codecov-action@v1
     - name: Check Build
