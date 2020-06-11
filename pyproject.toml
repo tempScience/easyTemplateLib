@@ -12,6 +12,10 @@ classifiers=[
     "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",  # Again, pick a license
     "Programming Language :: Python :: 3.6",
 ]
+packages = [
+    { include = "easyTemplate" },
+]
+
 [tool.poetry.dependencies]
 python = "^3.6, >=3.6.1"
 numpy = "^1.18.5"
