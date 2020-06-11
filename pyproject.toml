@@ -30,8 +30,6 @@ codecov = "^2.1.4"
 pre-commit = "^2.5.0"
 black = "^19.10b0"
 importlib-metadata = {version = "^1.6.1", python = "<3.8"}
-tox = "^3.15.2"
-tox-gh-actions = "^1.2.0"
 
 [tool.isort]
 known_third_party = ["matplotlib", "numpy", "scipy"]
