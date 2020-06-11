@@ -30,6 +30,8 @@ codecov = "^2.1.4"
 pre-commit = "^2.5.0"
 black = "^19.10b0"
 importlib-metadata = {version = "^1.6.1", python = "<3.8"}
+tox = "^3.15.2"
+tox-gh-actions = "^1.2.0"
 
 [tool.isort]
 known_third_party = ["matplotlib", "numpy", "scipy"]
@@ -39,8 +41,8 @@ force_grid_wrap = 0
 combine_as_imports = true
 include_trailing_comma = true
 
-[tool.pytest]
-markers = [
+[tool.pytest.ini_options]
+ markers = [
     "win32: mark a test as a win32 only test.",
     "linux: mark a test as a linux only test.",
     "darwin: mark a test as a OSX only test. "]
