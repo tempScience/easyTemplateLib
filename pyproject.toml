@@ -70,11 +70,12 @@ PLATFORM =
 
 [testenv]
 passenv = CI GITHUB_ACTION COVERAGE_FILE
-deps = codecov
+deps = coverage
 whitelist_externals = poetry
 commands =
     poetry install -vvv
     poetry run pytest
+    coverage xml -i
 """
 
 [build-system]

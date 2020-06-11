@@ -26,7 +26,6 @@ jobs:
     - name: Install dependencies
       run: |
         poetry add -D tox tox-gh-actions coverage
-        pip install codecov
         poetry update
     - name: Test with tox
       run: |
