@@ -36,7 +36,7 @@ jobs:
     - name: Upload coverage
       uses: codecov/codecov-action@v1
       with:
-        name: Pytest on ${{ matrix.os }}-${{ matrix.python-version }}
+        env_vars: OS,PYTHON
     - name: Check Build
       run: |
         pip install twine
