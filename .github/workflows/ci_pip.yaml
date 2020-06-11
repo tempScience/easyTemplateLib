@@ -34,7 +34,7 @@ jobs:
       env:
         COVERAGE_FILE: $GITHUB_WORKSPACE/.coverage
     - name: Upload coverage
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v1.0.7
       with:
         env_vars: OS,PYTHON
     - name: Check Build

@@ -45,7 +45,7 @@ include_trailing_comma = true
     "linux: mark a test as a linux only test.",
     "darwin: mark a test as a OSX only test. "]
 
-addopts = "--cov=easyTemplate"
+addopts = "--cov=easyTemplate --cov-report=xml"
 testpaths = [
     "tests"
 ]
@@ -75,7 +75,6 @@ whitelist_externals = poetry
 commands =
     poetry install -vvv
     poetry run pytest
-    coverage xml -i
 """
 
 [build-system]
