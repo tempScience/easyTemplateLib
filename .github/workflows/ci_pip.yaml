@@ -20,6 +20,7 @@ jobs:
             ${{ runner.os }}-poetry-
       - name: Verify Commit
         run: |
+          poetry update
           poetry run pre-commit run --all-files
         env:
           SKIP: prettier
