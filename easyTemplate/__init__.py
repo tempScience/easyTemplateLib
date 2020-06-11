@@ -1,6 +1,4 @@
 __author__ = "github.com/wardsimon"
-
-
 import sys
 
 
