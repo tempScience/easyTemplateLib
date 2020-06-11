@@ -37,6 +37,9 @@ jobs:
       uses: codecov/codecov-action@v1.0.7
       with:
         env_vars: OS,PYTHON
+      env:
+        OS: ${{ matrix.os }}
+        PYTHON: ${{ matrix.python-version }}
     - name: Check Build
       run: |
         pip install twine
