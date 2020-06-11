@@ -75,7 +75,7 @@ whitelist_externals = poetry
 commands =
     poetry install -vvv
     poetry run pytest
-    commands = codecov
+    codecov
 """
 
 [build-system]
