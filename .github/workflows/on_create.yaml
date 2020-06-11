@@ -37,4 +37,4 @@ jobs:
         git checkout -b develop
         git push origin develop:develop
         git checkout -b release
-        git push orign release:release
+        git push origin release:release
