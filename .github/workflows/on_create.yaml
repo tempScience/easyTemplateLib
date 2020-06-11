@@ -2,6 +2,8 @@ name: Create Repo
 
 on:
   create:
+    branches:
+      - master
 
 jobs:
   build:
@@ -30,3 +32,9 @@ jobs:
         git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
         git push --force
+    - name: Create branches
+      run: |
+        git checkout -b develop
+        git push origin develop:develop
+        git checkout -b release
+        git push orign release:release
