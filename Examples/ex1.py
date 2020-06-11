@@ -6,13 +6,14 @@ import numpy as np
 from easyTemplate.interface import Interface, calculators_list
 from easyTemplate.Objects.fitting import Model, Parameter
 
+
 x = np.linspace(0, 10, 100)
 y = 3.0 * x + 2.0 + np.random.normal(-1.0, 1.0, len(x))
 
 p1 = Parameter("m", 1.5)
 p2 = Parameter("c", 0.5)
 
-f = lambda x, m, c: m * x + c
+f = lambda x, m, c: m * x + c  # noqa: E731
 m = Model(f, [p1, p2])
 
 interface = Interface(model=m)
