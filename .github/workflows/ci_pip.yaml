@@ -35,6 +35,8 @@ jobs:
         COVERAGE_FILE: $GITHUB_WORKSPACE/.coverage
     - name: Upload coverage
       uses: codecov/codecov-action@v1
+      with:
+        name: Pytest on ${{ matrix.os }}-${{ matrix.python-version }}
     - name: Check Build
       run: |
         pip install twine
