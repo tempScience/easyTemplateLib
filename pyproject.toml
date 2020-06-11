@@ -69,10 +69,13 @@ PLATFORM =
     windows-latest: windows
 
 [testenv]
+passenv = CI GITHUB_ACTION
+deps = codecov
 whitelist_externals = poetry
 commands =
     poetry install -vvv
     poetry run pytest
+    commands = codecov
 """
 
 [build-system]
