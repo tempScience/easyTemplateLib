@@ -3,7 +3,7 @@ name: CI - PIP
 on: [push]
 
 jobs:
-  build:
+  test:
     strategy:
       max-parallel: 4
       matrix:
@@ -29,18 +29,32 @@ jobs:
         poetry update
     - name: Test with tox
       run: |
-        poetry build
         poetry run tox
-      env:
-        COVERAGE_FILE: $GITHUB_WORKSPACE/.coverage
     - name: Upload coverage
       uses: codecov/codecov-action@v1.0.7
       with:
+        name: Pytest coverage
         env_vars: OS,PYTHON
       env:
         OS: ${{ matrix.os }}
         PYTHON: ${{ matrix.python-version }}
-    - name: Check Build
-      run: |
-        pip install twine
-        python -m twine check dist/*
+
+  build:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - uses: Gr1N/setup-poetry@v2
+      - name: Check Build
+        run: |
+          pip install twine
+          poetry build
+          python -m twine check dist/*
+      - name: Deploy to PyPi Test
+        run: |
+          poetry config repositories.testpypi https://test.pypi.org/simple
+          poetry config pypi-token.pypi ${{ secrets.PYPI_TEST_TOKEN }}
+          poetry publish -r testpypi
