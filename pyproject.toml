@@ -74,8 +74,9 @@ deps = codecov
 whitelist_externals = poetry
 commands =
     poetry install -vvv
+    setenv COVERAGE_FILE=$GITHUB_WORKSPACE/.coverage
+    echo COVERAGE_FILE
     poetry run pytest
-    codecov
 """
 
 [build-system]
