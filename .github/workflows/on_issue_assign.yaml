@@ -1,24 +1,24 @@
 name: Issue Assigner
 
 on:
-    issues:
-        types: [assigned]
-    issue_comment:
-        types: [created]
+  issues:
+    types: [assigned]
+  issue_comment:
+    types: [created]
 
 jobs:
-    create_issue_branch_job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Create Issue Branch
-          uses: robvanderleek/create-issue-branch@master
-          with:
-            branchName: short
-            autoCloseIssue: true
-            branches:
-              - label: 'hotfix'
-                name: release
-              - label: '*'
-                name: development
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create_issue_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue Branch
+        uses: robvanderleek/create-issue-branch@master
+        with:
+          branchName: short
+          autoCloseIssue: true
+          branches:
+            - label: 'hotfix'
+              name: release
+            - label: '*'
+              name: development
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
