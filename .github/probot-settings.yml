@@ -61,6 +61,15 @@ labels:
     # include the old name to rename an existing label
     oldname: Help Wanted
 
+  - name: major
+    description: Apply to bump the version by x.0.0
+
+  - name: minor
+    description: Apply to bump the version by 0.x.0
+
+  - name: patch
+    description: Apply to bump the version by 0.0.x
+
 # Milestones: define milestones for Issues and Pull Requests
 #milestones:
 #  - title: milestone-title
