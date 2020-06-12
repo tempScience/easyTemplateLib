@@ -30,14 +30,14 @@ jobs:
       run: |
         git rm ./.github/workflows/on_create.yaml
     - name: Run probot-settings
-      uses: elstudio/actions-settings@v2
+      uses: elstudio/actions-settings@v2-beta
       with:
         debug: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Remove workflow file from master branch
       if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
-      run: rm ./.github/workflows/probot-settings.yml
+      run: rm ./.github/probot-settings.yml
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
