@@ -20,18 +20,15 @@ jobs:
       run: |
         export REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
         git mv easyTemplate $REPOSITORY_NAME
+        mv ./.github/settings.yml ./
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate\b/'$REPOSITORY_NAME'/g' {} +
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +
+        mv ./settings.yml ./.github/
     - name: Remove Creation Template
       if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       shell: bash
       run: |
         git rm ./.github/workflows/on_create.yaml
-    - name: Commit Changes
-      run: |
-        git config --global user.name 'On Create Bot'
-        git commit -am "Automated Repo Maker"
-        git push --force
     - name: Run probot-settings
       uses: elstudio/actions-settings@v2
       env:
@@ -39,8 +36,11 @@ jobs:
     - name: Remove workflow file from master branch
       if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       run: rm ./.github/workflows/probot-settings.yml
-
+    - name: Commit Changes
+      run: |
+        git config --global user.name 'On Create Bot'
+        git commit -am "Automated Repo Maker"
     - name: Commit changes
-      uses: elstudio/actions-js-build/commit@v2
+      uses: elstudio/actions-js-build/commit@v3
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
