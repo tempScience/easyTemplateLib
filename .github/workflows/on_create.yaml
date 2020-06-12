@@ -10,6 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Checkout submodules
       shell: bash
       run: |
@@ -25,6 +26,10 @@ jobs:
         git mv easyTemplate $REPOSITORY_NAME
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate\b/'$REPOSITORY_NAME'/g' {} +
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +
+    - name: Remove Creation Template
+      if: "!contains(github.repository, 'easyTemplateLib')"
+      shell: bash
+      run: |
         git rm .github/workflows/on_create.yaml
     - name: Commit Changes
       run: |
