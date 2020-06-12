@@ -40,5 +40,5 @@ jobs:
       run: |
         git checkout -b develop
         git push origin develop:develop
-        git checkout -b release
-        git push origin release:release
+        git checkout -b pre-release
+        git push origin pre-release:pre-release
