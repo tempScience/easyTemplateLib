@@ -30,7 +30,7 @@ jobs:
       run: |
         git rm ./.github/workflows/on_create.yaml
     - name: Run probot-settings
-      uses: elstudio/actions-settings@v2-beta
+      uses: wardsimon/actions-settings@v2.2
       with:
         debug: true
       env:
@@ -42,7 +42,4 @@ jobs:
       run: |
         git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
-    - name: Commit changes
-      uses: elstudio/actions-js-build/commit@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git push --force
