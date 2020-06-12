@@ -25,23 +25,37 @@ jobs:
         git mv easyTemplate $REPOSITORY_NAME
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate\b/'$REPOSITORY_NAME'/g' {} +
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +
+    - name: Run probot-settings
+      uses: elstudio/actions-settings@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Remove Creation Template
       if: "!contains(github.repository, 'easyTemplateLib')"
       shell: bash
       run: |
-        git rm .github/workflows/on_create.yaml
+        git rm ./.github/workflows/on_create.yaml
+        git rm ./.github/settings.yml
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
         git push --force
-    - name: Create branches
-      run: |
-        git checkout -b develop
-        git push origin develop:develop
-        git checkout -b release
-        git push origin release:release
-    - name: Enable branch protection
-      uses: benjefferies/branch-protection-bot@master
-      with:
-        access-token: ${{ secrets.ACCESS_TOKEN }}
+#    - name: Create branches
+#      run: |
+#        git checkout -b develop
+#        git push origin develop:develop
+#        git checkout -b release
+#        git push origin release:release
+
+#    - uses: actions/checkout@v2
+#
+#    - uses: actions/setup-python@v1
+#      with:
+#        python-version: 3.x
+#
+#    - name: Enable branch protection
+#      run: |
+#        pip install github3-py
+#        python Tools/Scripts/protect_branch.py
+#      env:
+#        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
