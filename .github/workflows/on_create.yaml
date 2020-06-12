@@ -44,6 +44,4 @@ jobs:
     - name: Enable branch protection
       uses: benjefferies/branch-protection-bot@master
       with:
-        access-token: ${{ secrets.GITHUB_TOKEN }}
-        branch: master
-        enforce_admins: true
+        access-token: ${{ secrets.ACCESS_TOKEN }}
