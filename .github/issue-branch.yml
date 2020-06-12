@@ -2,6 +2,6 @@ branchName: short
 autoCloseIssue: true
 branches:
   - label: hotfix
-    name: pre-release
+    name: release
   - label: '*'
     name: development

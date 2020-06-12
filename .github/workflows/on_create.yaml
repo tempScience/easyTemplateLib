@@ -40,11 +40,11 @@ jobs:
       run: |
         git checkout -b develop
         git push origin develop:develop
-        git checkout -b pre-release
-        git push origin pre-release:pre-release
-#    - name: Enable "include administrators" branch protection
-#      uses: benjefferies/branch-protection-bot@master
-#      with:
-#        access-token: ${{ secrets.GITHUB_TOKEN }}
-#        branch: master
-#        enforce_admins: true
+        git checkout -b release
+        git push origin release:release
+    - name: Enable "include administrators" branch protection
+      uses: benjefferies/branch-protection-bot@master
+      with:
+        access-token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master
+        enforce_admins: true
