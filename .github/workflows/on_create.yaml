@@ -4,12 +4,9 @@ on: [create]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Checkout submodules
       shell: bash
       run: |
@@ -35,13 +32,10 @@ jobs:
         git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
         git push --force
-
-
     - name: Run probot-settings
       uses: elstudio/actions-settings@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Remove workflow file from master branch
       if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       run: rm ./.github/workflows/probot-settings.yml
