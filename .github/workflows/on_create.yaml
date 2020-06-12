@@ -1,7 +1,6 @@
 name: Create Repo
 
-on:
-  create:
+on: [create]
 
 jobs:
   build:
@@ -42,7 +41,7 @@ jobs:
         git push origin develop:develop
         git checkout -b release
         git push origin release:release
-    - name: Enable "include administrators" branch protection
+    - name: Enable branch protection
       uses: benjefferies/branch-protection-bot@master
       with:
         access-token: ${{ secrets.GITHUB_TOKEN }}
