@@ -7,10 +7,10 @@ repository:
 #  name: repo-name
 
   # A short description of the repository that will show up on GitHub
-#  description: description of repo
+  description: easyTemplateLib - an easyScience library
 
   # A URL with more information about the repository
-#  homepage: https://example.github.io/
+  homepage: https://easyTemplateLib.github.io/
 
   # A comma-separated list of topics to set on the repository
 #  topics: github, probot
@@ -134,7 +134,7 @@ branches:
         # Dismiss approved reviews automatically when a new commit is pushed.
         dismiss_stale_reviews: false
         # Blocks merge until code owners have reviewed.
-        require_code_owner_reviews: true
+        require_code_owner_reviews: false
         # Specify which users and teams can dismiss pull request reviews. Pass an empty dismissal_restrictions object to disable. User and team dismissal_restrictions are only available for organization-owned repositories. Omit this parameter for personal repositories.
         dismissal_restrictions:
           users: []
