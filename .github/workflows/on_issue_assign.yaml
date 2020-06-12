@@ -12,13 +12,5 @@ jobs:
     steps:
       - name: Create Issue Branch
         uses: robvanderleek/create-issue-branch@master
-        with:
-          branchName: short
-          autoCloseIssue: true
-          branches:
-            - label: 'hotfix'
-              name: release
-            - label: '*'
-              name: development
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

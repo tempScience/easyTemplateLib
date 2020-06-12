@@ -2,8 +2,6 @@ name: Create Repo
 
 on:
   create:
-    branches:
-      - master
 
 jobs:
   build:
@@ -27,6 +25,7 @@ jobs:
         git mv easyTemplate $REPOSITORY_NAME
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate\b/'$REPOSITORY_NAME'/g' {} +
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +
+        git rm .github/workflows/on_create.yaml
     - name: Commit Changes
       run: |
         git config --global user.name 'On Create Bot'
