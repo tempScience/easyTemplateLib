@@ -29,7 +29,14 @@ jobs:
       shell: bash
       run: |
         git rm ./.github/workflows/on_create.yaml
-    - uses: mattsb42/repo-manager@v1
+    - name: Create branches
+      run:
+        git config --global user.name 'On Create Bot'
+        git checkout -b develop
+        git push origin develop:develop
+        git checkout -b release
+        git push origin release:release
+    - uses: mattsb42/repo-manager@v1.1.0
       with:
         github-token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
         config-file: .github/probot-settings.yml
@@ -38,6 +45,5 @@ jobs:
       run: rm ./.github/probot-settings.yml
     - name: Commit Changes
       run: |
-        git config --global user.name 'On Create Bot'
         git commit -am "Automated Repo Maker"
         git push --force
