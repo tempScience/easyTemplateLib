@@ -49,25 +49,29 @@ repository:
 # Labels: define labels for Issues and Pull Requests
 labels:
   - name: bug
-#    color: CC0000
+    color: CC0000
     description: An issue with the system 🐛.
 
   - name: feature
     # If including a `#`, make sure to wrap it with quotes!
-#    color: '#336699'
+    color: 336699
     description: New functionality.
 
   - name: first-timers-only
+    color: 0386dd
     # include the old name to rename an existing label
     oldname: Help Wanted
 
   - name: major
+    color: dd0316
     description: Apply to bump the version by x.0.0
 
   - name: minor
+    color: dd6903
     description: Apply to bump the version by 0.x.0
 
   - name: patch
+    color: fbe204
     description: Apply to bump the version by 0.0.x
 
 # Milestones: define milestones for Issues and Pull Requests
