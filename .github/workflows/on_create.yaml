@@ -5,6 +5,7 @@ on: [create]
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
     steps:
     - uses: actions/checkout@v2
     - name: Checkout submodules
@@ -25,18 +26,15 @@ jobs:
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +
         mv ./probot-settings.yml ./.github/
     - name: Remove Creation Template
-      if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       shell: bash
       run: |
         git rm ./.github/workflows/on_create.yaml
-    - name: Run probot-settings
-      uses: elstudio/actions-settings@v2
+    - uses: mattsb42/repo-manager@v1
       with:
+        github-token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+        config-file: .github/probot-settings.yml
         debug: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     - name: Remove workflow file from master branch
-      if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       run: rm ./.github/probot-settings.yml
     - name: Commit Changes
       run: |
