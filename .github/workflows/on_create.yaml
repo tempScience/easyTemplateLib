@@ -34,7 +34,7 @@ jobs:
       with:
         debug: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     - name: Remove workflow file from master branch
       if: endsWith(github.ref, '/master') && ! contains(github.repository, 'easyTemplateLib')
       run: rm ./.github/probot-settings.yml
