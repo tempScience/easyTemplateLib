@@ -30,7 +30,7 @@ jobs:
       run: |
         git rm ./.github/workflows/on_create.yaml
     - name: Create branches
-      run:
+      run: |
         git config --global user.name 'On Create Bot'
         git checkout -b develop
         git push origin develop:develop
