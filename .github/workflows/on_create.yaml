@@ -30,7 +30,7 @@ jobs:
       run: |
         git rm ./.github/workflows/on_create.yaml
     - name: Run probot-settings
-      uses: wardsimon/actions-settings@v2.2
+      uses: elstudio/actions-settings@v2
       with:
         debug: true
       env:
