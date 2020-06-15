@@ -57,11 +57,6 @@ labels:
     color: 336699
     description: New functionality.
 
-  - name: first-timers-only
-    color: 0386dd
-    # include the old name to rename an existing label
-    oldname: Help Wanted
-
   - name: major
     color: dd0316
     description: Apply to bump the version by x.0.0

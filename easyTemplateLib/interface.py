@@ -4,7 +4,7 @@ __version__ = "0.0.1"
 
 import matplotlib.pyplot as plt
 
-from easyTemplate.Engines import calculators as calculators_list
+from easyTemplateLib.Engines import calculators as calculators_list
 
 
 class Interface:
@@ -45,7 +45,7 @@ class Interface:
 
     @property
     def calculator(self):
-        return self.calculator.name
+        return self._calculator.name
 
     @calculator.setter
     def calculator(self, value):

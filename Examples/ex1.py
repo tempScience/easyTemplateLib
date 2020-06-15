@@ -3,8 +3,8 @@ __version__ = "0.0.1"
 
 import numpy as np
 
-from easyTemplate.interface import Interface, calculators_list
-from easyTemplate.Objects.fitting import Model, Parameter
+from easyTemplateLib.interface import Interface, calculators_list
+from easyTemplateLib.Objects.fitting import Model, Parameter
 
 
 x = np.linspace(0, 10, 100)

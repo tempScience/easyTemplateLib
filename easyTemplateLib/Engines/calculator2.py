@@ -1,7 +1,7 @@
 __author__ = "github.com/wardsimon"
 __version__ = "0.0.1"
 
-from easyTemplate.Engines.calculatorTemplate import CalculatorTemplate
+from easyTemplateLib.Engines.calculatorTemplate import CalculatorTemplate
 
 
 class Calculator2(CalculatorTemplate):

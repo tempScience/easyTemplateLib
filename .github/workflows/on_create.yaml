@@ -20,7 +20,7 @@ jobs:
       shell: bash
       run: |
         export REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
-        git mv easyTemplate $REPOSITORY_NAME
+        git mv easyTemplateLib $REPOSITORY_NAME
         cp ./.github/probot-settings.yml ./
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplate\b/'$REPOSITORY_NAME'/g' {} +
         find . -path '*/.git*' -prune -o -type f -exec sed -i 's/easyTemplateLib\b/'$REPOSITORY_NAME'/g' {} +

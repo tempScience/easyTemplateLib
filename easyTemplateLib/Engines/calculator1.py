@@ -4,7 +4,7 @@ __version__ = "0.0.1"
 import numpy as np
 import scipy.optimize as sio
 
-from easyTemplate.Engines.calculatorTemplate import CalculatorTemplate
+from easyTemplateLib.Engines.calculatorTemplate import CalculatorTemplate
 
 
 class Calculator1(CalculatorTemplate):
