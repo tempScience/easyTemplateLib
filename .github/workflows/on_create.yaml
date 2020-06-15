@@ -41,7 +41,7 @@ jobs:
         python-version: 3.x
     - name: Update branch protections
       run: |
-        pip install pyyaml
+        pip install pyyaml requests
         python Tools/Scripts/branch_protection.py
       env:
         INPUT_GITHUB-TOKEN: ${{ secrets.ADMIN_GITHUB_TOKEN }}
