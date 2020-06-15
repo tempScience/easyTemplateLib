@@ -36,6 +36,7 @@ jobs:
         git push origin develop:develop
         git checkout -b release
         git push origin release:release
+        git checkout -b master
     - uses: actions/setup-python@v2
       with:
         python-version: 3.x
@@ -56,4 +57,4 @@ jobs:
     - name: Commit Changes
       run: |
         git commit -am "Automated Repo Maker"
-        git push --force
+        git push --set-upstream origin master --force
