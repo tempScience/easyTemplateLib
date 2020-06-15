@@ -36,7 +36,7 @@ jobs:
         git push origin develop:develop
         git checkout -b release
         git push origin release:release
-        git checkout -b master
+        git checkout master
     - uses: actions/setup-python@v2
       with:
         python-version: 3.x
