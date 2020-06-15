@@ -36,6 +36,16 @@ jobs:
         git push origin develop:develop
         git checkout -b release
         git push origin release:release
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+    - name: Update branch protections
+      run: |
+        pip install pyyaml
+        python Scripts/branch_protection.py
+      env:
+        INPUT_GITHUB-TOKEN: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+        INPUT_CONFIG-FILE: .github/probot-settings.yml
     - uses: mattsb42/repo-manager@v1.1.0
       with:
         github-token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
