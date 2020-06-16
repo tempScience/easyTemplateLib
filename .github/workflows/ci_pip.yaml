@@ -23,12 +23,12 @@ jobs:
 
     - uses: Gr1N/setup-poetry@v2
 
-    - uses: actions/cache@v1
-      with:
-        path: ~/.cache/pypoetry/virtualenvs
-        key: ${{ matrix.os }}-poetry-${{ hashFiles('poetry.lock') }}
-        restore-keys: |
-          ${{ matrix.os }}-poetry-
+#    - uses: actions/cache@v1
+#      with:
+#        path: ~/.cache/pypoetry/virtualenvs
+#        key: ${{ matrix.os }}-poetry-${{ hashFiles('poetry.lock') }}
+#        restore-keys: |
+#          ${{ matrix.os }}-poetry-
 
     - name: Install dependencies
       run: |
@@ -62,12 +62,12 @@ jobs:
 
       - uses: Gr1N/setup-poetry@v2
 
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-
+#      - uses: actions/cache@v1
+#        with:
+#          path: ~/.cache/pypoetry/virtualenvs
+#          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-poetry-
 
       - name: Check Build
         run: |
