@@ -82,3 +82,5 @@ Distribution
 Auth.yml
 .idea/
 src/
+
+.tox/

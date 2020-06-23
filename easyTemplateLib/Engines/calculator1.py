@@ -1,20 +1,27 @@
 __author__ = "github.com/wardsimon"
-__version__ = "0.0.1"
-
-import numpy as np
-import scipy.optimize as sio
+__version__ = "0.0.2"
 
 from easyTemplateLib.Engines.calculatorTemplate import CalculatorTemplate
 
 
 class Calculator1(CalculatorTemplate):
-    name = "scipy"
+    name = "leastsq"
 
-    def __init__(self, obj):
-        super().__init__(obj)
+    def __init__(self, obj, x=None, xtol=1E-7, ftol=1E-7, Dfun=None):
+        super().__init__(obj, x)
+        self._store = {
+            'xtol': xtol,
+            'ftol': ftol,
+            'Dfun': Dfun
+        }
+        for key in self._store.keys():
+            setattr(
+                self.__class__,
+                key,
+                property(self.__gitem(key), self.__sitem(key)),
+            )
 
-    def calculate(self):
-        m = self._store.get("model")
-        fit, cov = sio.curve_fit(m.fit_func, self.x, self.y, p0=m.x0, ftol=self.ftol)
-        m.std = np.sqrt(np.diag(cov))
-        return fit
+    def fit(self, data, **kwargs):
+        if 'method' in kwargs.keys():
+            raise AttributeError
+        return self._fit(data, method=self.name, **self._store, **kwargs)

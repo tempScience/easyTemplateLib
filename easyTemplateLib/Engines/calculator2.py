@@ -5,12 +5,23 @@ from easyTemplateLib.Engines.calculatorTemplate import CalculatorTemplate
 
 
 class Calculator2(CalculatorTemplate):
-    name = "not_implemented"
+    name = "BFGS"
 
-    def __init__(self, obj):
-        super().__init__(obj)
+    def __init__(self, obj, x=None, gtol=1e-05, eps=1.4901161193847656e-08, maxiter=None):
+        super().__init__(obj, x)
+        self._store = {'gtol': gtol,
+                       'eps': eps,
+                       'maxiter': maxiter
+                       }
+        for key in self._store.keys():
+            setattr(
+                self.__class__,
+                key,
+                property(self.__gitem(key), self.__sitem(key)),
+            )
 
-    def calculate(self):
-        m = self._store.get("model")
-        m.std = [0] * len(m.x0)
-        return [0] * len(m.x0)
+    def fit(self, data, **kwargs):
+        if 'method' in kwargs.keys():
+            raise AttributeError
+        return self._fit(data, method=self.name, **self._store, **kwargs)
+
