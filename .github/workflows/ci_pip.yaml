@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        poetry add -D tox tox-gh-actions coverage
+        poetry add -D tox-gh-actions coverage
         poetry update
 
     - name: Test with tox
