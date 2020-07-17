@@ -2,7 +2,7 @@ __author__ = "github.com/wardsimon"
 __version__ = "0.0.1"
 
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 from easyTemplateLib.Engines import calculators as calculators_list
 
